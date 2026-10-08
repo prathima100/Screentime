@@ -1,0 +1,28 @@
+# PulseTrack - Screen Time Monitor
+# Core Dependencies
+
+# Web Framework
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+
+# Database
+sqlite3  # Built-in, no need to install
+
+# System Utilities
+psutil>=5.9.0
+
+# Platform-specific
+pywin32>=305; sys_platform == 'win32'
+AppKit>=0.2.8; sys_platform == 'darwin'
+dbus-python>=1.2.18; sys_platform == 'linux'
+PyObjC>=9.0; sys_platform == 'darwin'
+
+# Development
+pytest>=7.4.0
+black>=23.0.0
+flake8>=6.0.0
+
+# Optional for enhanced dashboard
+pydantic>=2.0.0
+Jinja2>=3.1.0
+

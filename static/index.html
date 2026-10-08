@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PulseTrack - Screen Time Monitor</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>🔴 PulseTrack</h1>
+                <p class="subtitle">Real-Time Screen Time Monitor</p>
+            </div>
+            <div class="status-pill" id="statusPill">
+                <span class="status-icon">🟢</span>
+                <span class="status-text">ACTIVE</span>
+            </div>
+        </header>
+
+        <!-- Date Toolbar -->
+        <div class="toolbar">
+            <div class="toolbar-left">
+                <button class="btn btn-small" onclick="setDate('today')">Today</button>
+                <button class="btn btn-small" onclick="setDate('yesterday')">Yesterday</button>
+                <button class="btn btn-small" onclick="setDate('week')">Last 7 Days</button>
+            </div>
+            <div class="toolbar-right">
+                <input type="date" id="datePicker" onchange="handleDateChange()" />
+                <button class="btn btn-primary" onclick="exportData('csv')">📥 CSV</button>
+                <button class="btn btn-primary" onclick="exportData('json')">📥 JSON</button>
+            </div>
+        </div>
+
+        <!-- Metrics Cards -->
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-icon">🟢</div>
+                <div class="metric-label">Active Screen Time</div>
+                <div class="metric-value" id="activeTime">0h 0m 0s</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-icon">🟡</div>
+                <div class="metric-label">Idle Time</div>
+                <div class="metric-value" id="idleTime">0h 0m 0s</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-icon">🔴</div>
+                <div class="metric-label">Locked Time</div>
+                <div class="metric-value" id="lockedTime">0h 0m 0s</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-icon">🟣</div>
+                <div class="metric-label">Sleep Time</div>
+                <div class="metric-value" id="sleepTime">0h 0m 0s</div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="charts-grid">
+            <!-- Donut Chart -->
+            <div class="chart-container">
+                <h3>State Distribution</h3>
+                <canvas id="donutChart"></canvas>
+            </div>
+
+            <!-- Hourly Bar Chart -->
+            <div class="chart-container">
+                <h3>24-Hour Timeline</h3>
+                <canvas id="hourlyChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="timeline-container">
+            <h3>📅 Daily Timeline</h3>
+            <div class="timeline" id="timeline">
+                <p class="loading">Loading timeline...</p>
+            </div>
+        </div>
+
+        <!-- Top Apps -->
+        <div class="apps-container">
+            <h3>📱 Top Applications</h3>
+            <div class="apps-list" id="appsList">
+                <p class="loading">Loading applications...</p>
+            </div>
+        </div>
+
+        <!-- Trend Chart -->
+        <div class="chart-container full-width">
+            <h3>📈 7-Day Trend</h3>
+            <canvas id="trendChart"></canvas>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>PulseTrack v1.0.0 | Last Updated: <span id="lastUpdate">--:-- --</span></p>
+        </footer>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
